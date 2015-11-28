@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128172757) do
+ActiveRecord::Schema.define(version: 20151128185048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,16 +37,36 @@ ActiveRecord::Schema.define(version: 20151128172757) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "requests", force: :cascade do |t|
+    t.datetime "date"
+    t.text     "description"
+    t.integer  "machine_id"
+    t.integer  "supply_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "requests", ["machine_id"], name: "index_requests_on_machine_id", using: :btree
+  add_index "requests", ["supply_id"], name: "index_requests_on_supply_id", using: :btree
+
   create_table "shifts", force: :cascade do |t|
     t.string   "type_shift"
-    t.string   "timestamp"
-    t.string   "end_time"
+    t.datetime "start_shift"
+    t.datetime "end_shift"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "shifts", ["user_id"], name: "index_shifts_on_user_id", using: :btree
+
+  create_table "supplies", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "stock"
+    t.string   "type_supply"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -74,5 +94,7 @@ ActiveRecord::Schema.define(version: 20151128172757) do
 
   add_foreign_key "dyalises", "machines"
   add_foreign_key "dyalises", "users"
+  add_foreign_key "requests", "machines"
+  add_foreign_key "requests", "supplies"
   add_foreign_key "shifts", "users"
 end

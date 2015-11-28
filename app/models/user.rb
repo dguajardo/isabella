@@ -5,4 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :dyalises	
   has_many :shifts
+
+  enum role: [:pacient, :nurse, :admin]
 end
