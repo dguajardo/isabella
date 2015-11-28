@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type_dyalisis: MyString
+  description: MyText
+  medical_unit: MyString
+
+two:
+  type_dyalisis: MyString
+  description: MyText
+  medical_unit: MyString
