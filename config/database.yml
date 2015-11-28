@@ -29,7 +29,7 @@ development:
   database: isabella_development
   pool: 5
   username: isabella
-  password: <%= ENV['ISABELLA_DATABASE_PASSWORD'] %>
+  password: paula13
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

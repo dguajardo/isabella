@@ -1,15 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  type_dyalisis: MyString
+  date: 2015-11-28 15:50:48
   description: MyText
-  medical_unit: MyString
-  user_id: 
   machine_id: 
+  supply_id: 
 
 two:
-  type_dyalisis: MyString
+  date: 2015-11-28 15:50:48
   description: MyText
-  medical_unit: MyString
-  user_id: 
   machine_id: 
+  supply_id: 

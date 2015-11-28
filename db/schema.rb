@@ -11,10 +11,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151128150148) do
+ActiveRecord::Schema.define(version: 20151128172757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "dyalises", force: :cascade do |t|
+    t.string   "type_dyalisis"
+    t.text     "description"
+    t.string   "medical_unit"
+    t.integer  "user_id"
+    t.integer  "machine_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "dyalises", ["machine_id"], name: "index_dyalises_on_machine_id", using: :btree
+  add_index "dyalises", ["user_id"], name: "index_dyalises_on_user_id", using: :btree
+
+  create_table "machines", force: :cascade do |t|
+    t.string   "name"
+    t.string   "model"
+    t.boolean  "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "shifts", force: :cascade do |t|
+    t.string   "type_shift"
+    t.string   "timestamp"
+    t.string   "end_time"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "shifts", ["user_id"], name: "index_shifts_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -40,4 +72,7 @@ ActiveRecord::Schema.define(version: 20151128150148) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "dyalises", "machines"
+  add_foreign_key "dyalises", "users"
+  add_foreign_key "shifts", "users"
 end

@@ -3,7 +3,7 @@ class CreateMachines < ActiveRecord::Migration
     create_table :machines do |t|
       t.string :name
       t.string :model
-      t.bolean :active
+      t.boolean :active
 
       t.timestamps null: false
     end
